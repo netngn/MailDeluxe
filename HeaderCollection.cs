@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Mail;
 using System.Text.RegularExpressions;
 
 namespace MailDeluxe
@@ -96,9 +95,7 @@ namespace MailDeluxe
 
     public class HeaderCollection : SafeDictionary<string, HeaderValue>
     {
-        private static Regex emailAddressesRegex = new Regex("\"((?<name>[^\"]*)\"\\s<(?<email>\\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b)>)|((?<name>\\w*\\s\\w*)\\s<(?<email>\\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b)>)|((?<email>\\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b))",
-           RegexOptions.IgnoreCase | RegexOptions.Multiline | RegexOptions.Compiled);
-
+        
         public HeaderCollection() : base(StringComparer.OrdinalIgnoreCase) { }
 
         public string GetBoundary()
@@ -147,32 +144,7 @@ namespace MailDeluxe
 
         public List<MailAddress> GetAddresses(string header)
         {
-            string values = this[header].RawValue.Trim();
-            List<MailAddress> addresses = new List<MailAddress>();
-            if (String.IsNullOrWhiteSpace(values))
-                return addresses;
-
-
-            MatchCollection matches = emailAddressesRegex.Matches(values);
-            foreach (Match m in matches)
-            {
-                if (!String.IsNullOrWhiteSpace(m.Groups["name"].Value))
-                {
-                    MailAddress address = String.Format("{0} {1}", m.Groups["name"].Value, m.Groups["email"].Value).ToEmailAddress();
-                    //Could not handle the name correctly. :-)
-                    if (address != null)
-                    {
-                        addresses.Add(address);
-                        continue;
-                    }
-                }
-                addresses.Add(m.Groups["email"].Value.ToEmailAddress());
-            }
-            if (addresses.Count == 0 && values.Length > 0 && values.IndexOf('@') > -1 && !values.Contains(".local"))
-                throw new Exception("Unable to grab email address for " + values);
-            if (addresses.Count(x => x == null) > 0)
-                throw new Exception("Examine this list.");
-            return addresses;
+            return MailAddress.ExtractMailAddresses(this[header].RawValue.Trim());
         }
 
 

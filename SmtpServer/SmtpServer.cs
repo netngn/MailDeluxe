@@ -13,7 +13,7 @@ namespace MailDeluxe.SmtpServer
 {
 
     public delegate void MailMessageHandler(MailMessage m);
-    public delegate void RecipientHandler(System.Net.Mail.MailAddress address);
+    public delegate bool SenderAllowedHandler(MailMessage m);
 
     public class SimpleSmtpServer : IDisposable
     {
@@ -26,18 +26,17 @@ namespace MailDeluxe.SmtpServer
         public Dictionary<string, SmtpVerbHandler> VerbStore;
 
         public event MailMessageHandler MessageReceived;
-        public event RecipientHandler RecipientReceived;
+        public event SenderAllowedHandler RecipientReceived;
 
         public void OnMessageReceived(MailMessage m)
         {
             MessageReceived(m);
         }
 
-        
-        public void OnRecipientReceived(System.Net.Mail.MailAddress m)
+
+        public bool OnRecipientReceived(MailMessage m)
         {
-            if (RecipientReceived!=null)
-                RecipientReceived(m);
+            return RecipientReceived(m);
         }
 
         public IPAddress ListeningIp;
@@ -106,7 +105,7 @@ namespace MailDeluxe.SmtpServer
 
         private void ProcessSocket(SimpleSocket s)
         {
-            var session = new Session(s, new MailMessageHandler(OnMessageReceived), new RecipientHandler(OnRecipientReceived));
+            var session = new Session(s, new MailMessageHandler(OnMessageReceived), new SenderAllowedHandler(OnRecipientReceived));
 
             while (s.Connected && Running)
             {

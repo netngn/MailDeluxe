@@ -288,13 +288,6 @@ namespace MailDeluxe {
       events(sender, args);
     }
 
-    internal static MailAddress ToEmailAddress(this string input) {
-      try {
-        return new MailAddress(input);
-      } catch (Exception) {
-        return null;
-      }
-    }
 
     internal static bool Is(this string input, string other) {
       return string.Equals(input, other, StringComparison.OrdinalIgnoreCase);

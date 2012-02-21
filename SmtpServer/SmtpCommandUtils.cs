@@ -13,8 +13,8 @@ namespace MailDeluxe.SmtpServer
         public const string SV_QUIT = "250 OK\r\n";
         public const string SV_DATA_OK = "354 Start mail input; end with .\r\n";
         public const string SV_UNKNOWN = "500 Unknown command\r\n";
+        public const string SV_UNKNOWN_MAILBOX = "550 Requested action not taken: mailbox unavailable\r\n";
         public const string SV_GO = "220 Go ahead";
-
         public const string CL_EHLO = "EHLO";
         public const string CL_HELO = "HELO";
         public const string CL_MAIL = "MAIL";

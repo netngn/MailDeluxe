@@ -10,14 +10,14 @@ namespace MailDeluxe.SmtpServer
     {
         public SimpleSocket Socket;
         public event MailMessageHandler MessageRecieved;
-        public event RecipientHandler RecipientFound;
+        public event SenderAllowedHandler RecipientFound;
         public void TriggerMessage(MailMessage m) { MessageRecieved(m); }
-        public void TriggerRecipient(System.Net.Mail.MailAddress m) { RecipientFound(m); }
+        public bool IsSenderAllowed(MailMessage m) { return RecipientFound(m); }
 
         public MailMessage Message;
         public System.Net.Mail.MailAddress From;
 
-        public Session(SimpleSocket socket, MailMessageHandler messageEvent, RecipientHandler recipientEvent)
+        public Session(SimpleSocket socket, MailMessageHandler messageEvent, SenderAllowedHandler recipientEvent)
         {
             this.Socket = socket;
             this.MessageRecieved += messageEvent;

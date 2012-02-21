@@ -51,6 +51,7 @@
     <Compile Include="Imap\Namespace.cs" />
     <Compile Include="Imap\Quota.cs" />
     <Compile Include="Imap\SearchCondition.cs" />
+    <Compile Include="MailAddress.cs" />
     <Compile Include="MailMessage.cs" />
     <Compile Include="Pop3Client.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

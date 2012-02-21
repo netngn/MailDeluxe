@@ -10,10 +10,17 @@ namespace MailDeluxe.SmtpServer.Verbs
     {
         public void Do(Session session)
         {
-            MailAddress address = new MailAddress(SmtpMailVerbUtils.ParseValue(session.Commands.Last()));
-            //session.Message.To.Add(address);
-
-            session.Socket.SendString(SmtpCommandUtils.SV_OK);
+            MailAddress address = MailAddress.ExtractMailAddress(SmtpMailVerbUtils.ParseValue(session.Commands.Last()));
+            session.Message.To.Add(address);
+            if(session.IsSenderAllowed(session.Message))
+            {
+                session.Socket.SendString(SmtpCommandUtils.SV_OK);
+            } else
+            {
+                session.Socket.SendString(SmtpCommandUtils.SV_UNKNOWN_MAILBOX);
+                session.Socket.Close();
+            }
+            
         }
     }
 }
