@@ -48,7 +48,7 @@ namespace MailDeluxe {
     public ICollection<MailAddress> Bcc { get; private set; }
     public ICollection<MailAddress> ReplyTo { get; private set; }
     public ICollection<Attachment> Attachments { get; private set; }
-    public MailAddress From { get; private set; }
+    public MailAddress From { get; set; }
     public MailAddress Sender { get; set; }
     public string MessageID { get; set; }
     public string Uid { get; internal set; }

@@ -33,9 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Faker">
-      <HintPath>..\..\packages\Faker.1.2\lib\Faker.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -53,13 +50,14 @@
     <Compile Include="SimpleSmtpServerTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Faker\Faker.csproj">
+      <Project>{598D73F1-9EBD-494A-A244-7AA4E7FB7591}</Project>
+      <Name>Faker</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MailDeluxe.csproj">
       <Project>{DB88753D-F605-4C6F-A122-D1655EF3F563}</Project>
       <Name>MailDeluxe</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

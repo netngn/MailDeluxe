@@ -40,8 +40,8 @@ namespace MailDeluxe.Tests
         [TestMethod]
         public void GeneratedTest()
         {
-            string name = NameFaker.Name();
-            string emailAddress = InternetFaker.Email();
+            string name = Name.FullName();
+            string emailAddress = Internet.Email();
             string expectedToString = String.Format("\"{0}\" <{1}>", name, emailAddress);
             MailAddress address = MailAddress.ExtractMailAddress(expectedToString);
             Assert.IsNotNull(address);
