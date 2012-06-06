@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,11 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attachment.cs" />
-    <Compile Include="DateTimeParser.cs" />
+    <Compile Include="Utilities\DateTimeParser.cs" />
     <Compile Include="HeaderCollection.cs" />
     <Compile Include="HeaderObject.cs" />
-    <Compile Include="IMailClient.cs" />
-    <Compile Include="ImapClient.cs" />
+    <Compile Include="Clients\IMailClient.cs" />
+    <Compile Include="Clients\ImapClient.cs" />
     <Compile Include="Imap\Mailbox.cs" />
     <Compile Include="Imap\MessageEventArgs.cs" />
     <Compile Include="Imap\Namespace.cs" />
@@ -53,8 +54,9 @@
     <Compile Include="Imap\SearchCondition.cs" />
     <Compile Include="MailAddress.cs" />
     <Compile Include="MailMessage.cs" />
-    <Compile Include="Pop3Client.cs" />
+    <Compile Include="Clients\Pop3Client.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Clients\SendMail.cs" />
     <Compile Include="SmtpServer\Session.cs" />
     <Compile Include="SmtpServer\SimpleSocket.cs" />
     <Compile Include="SmtpServer\SmtpCommandUtils.cs" />
@@ -68,7 +70,9 @@
     <Compile Include="SmtpServer\Verbs\MailRcpt.cs" />
     <Compile Include="SmtpServer\Verbs\Quit.cs" />
     <Compile Include="TextClient.cs" />
-    <Compile Include="Utilities.cs" />
+    <Compile Include="Utilities\HelperExtensions.cs" />
+    <Compile Include="Utilities\MxLookup.cs" />
+    <Compile Include="Utilities\NetworkStatus.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />

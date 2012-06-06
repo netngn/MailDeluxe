@@ -71,7 +71,7 @@ namespace MailDeluxe.SmtpServer
             listener = new TcpListener(this.ListeningIp, this.ListeningPort);
             listener.Start();
 
-            processingThread = new Thread(new ThreadStart(Run));
+            processingThread = new Thread(Run);
             processingThread.Start();
         }
 

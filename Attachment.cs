@@ -7,15 +7,6 @@ namespace MailDeluxe {
             get { return Headers["Content-Disposition"]["filename"]; }
         }
 
-        [Obsolete("Use ContentTransferEncoding instead"), EditorBrowsable(EditorBrowsableState.Never)]
-        public string ContentEncoding { get { return ContentTransferEncoding; } set { ContentTransferEncoding = value; } }
-
-        [Obsolete("Use Body instead"), EditorBrowsable(EditorBrowsableState.Never)]
-        public string Content { get { return Body; } set { SetBody(value); } }
-
-        [Obsolete("Use GetData instead"), EditorBrowsable(EditorBrowsableState.Never)]
-        public byte[] GetContent() { return GetData(); }
-
         private string _ContentDisposition;
         private string ContentDisposition {
             get { return _ContentDisposition ?? (_ContentDisposition = Headers["Content-Disposition"].Value.ToLower()); }
@@ -41,7 +32,7 @@ namespace MailDeluxe {
 
         public byte[] GetData() {
             byte[] data;
-            if (ContentTransferEncoding.Is("base64") && Utilities.IsValidBase64String(Body)) {
+            if (ContentTransferEncoding.Is("base64") && HelperExtensions.IsValidBase64String(Body)) {
                 try {
                     data = Convert.FromBase64String(Body);
                 } catch (Exception) {

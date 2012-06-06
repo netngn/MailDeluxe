@@ -39,12 +39,13 @@ namespace MailDeluxe {
 
     internal void SetBody(string value) {
       if (ContentTransferEncoding.Is("quoted-printable")) {
-        value = Utilities.DecodeQuotedPrintable(value, Utilities.ParseCharsetToEncoding(Charset));
+          value = HelperExtensions.DecodeQuotedPrintable(value, HelperExtensions.ParseCharsetToEncoding(Charset));
 
       } else if (ContentTransferEncoding.Is("base64")
         //only decode the content if it is a text document
               && ContentType.StartsWith("text/", StringComparison.OrdinalIgnoreCase)
-              && Utilities.IsValidBase64String(value)) {
+              && HelperExtensions.IsValidBase64String(value))
+      {
         var data = Convert.FromBase64String(value);
         using (var mem = new System.IO.MemoryStream(data))
         using (var str = new System.IO.StreamReader(mem, true))

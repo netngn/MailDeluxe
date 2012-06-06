@@ -14,17 +14,15 @@ namespace MailDeluxe.Tests
         SimpleSmtpServer server;
 
         [TestMethod]
-        public void TestMethod1()
+        public void ExampleNewServer()
         {
             bool isRunning = true;
 
             server = new SimpleSmtpServer();
             server.MessageReceived += new MailMessageHandler(server_MessageReceived);
             server.RecipientReceived += new SenderAllowedHandler(server_RecipientReceived);
-            while (isRunning)
-            {
                 Thread.Sleep(100);
-            }
+            
             server.Dispose();
         }
 

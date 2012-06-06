@@ -150,7 +150,7 @@ namespace MailDeluxe
 
         public static HeaderCollection Parse(string headers)
         {
-            headers = Utilities.DecodeWords(headers);
+            headers = HelperExtensions.DecodeWords(headers);
             var temp = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
             var lines = headers.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
             int i;

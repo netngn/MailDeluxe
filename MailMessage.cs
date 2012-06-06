@@ -25,7 +25,7 @@ namespace MailDeluxe {
   }
 
   public class MailMessage : ObjectWHeaders {
-    private bool _HeadersOnly; // set to true if only headers have been fetched. 
+    private bool _headersOnly; // set to true if only headers have been fetched. 
 
     public MailMessage() {
       RawFlags = new string[0];
@@ -64,7 +64,7 @@ namespace MailDeluxe {
     }
 
     public void Load(TextReader reader, bool headersOnly = false) {
-      _HeadersOnly = headersOnly;
+      _headersOnly = headersOnly;
       Headers = null;
       Body = null;
 
@@ -119,20 +119,25 @@ namespace MailDeluxe {
       Subject = Headers["Subject"].RawValue;
     }
 
-    [Obsolete("Use Body instead--check content-type to determine if it's HTML.  If HTML is needed, find an attachment in GetBodyAttachments() with a text/html content-type."), EditorBrowsable(EditorBrowsableState.Never)]
-    public string BodyHtml {
-      get {
-        if (ContentType.Contains("html"))
-          return Body;
-        return GetBodyAttachments()
-          .Where(x => x.ContentType.Contains("html"))
-          .Select(x => x.Body)
-          .FirstOrDefault();
-      }
+    public string BodyHtml
+    {
+        get
+        {
+            if (ContentType.Contains("html"))
+                return Body;
+            return GetBodyAttachments()
+              .Where(x => x.ContentType.Contains("html"))
+              .Select(x => x.Body)
+              .FirstOrDefault() ?? Body;
+        }
     }
 
     public IEnumerable<Attachment> GetBodyAttachments() {
       return Attachments.Where(x => !x.IsAttachment);
+    }
+    public IEnumerable<Attachment> GetAttachments()
+    {
+        return Attachments.Where(x => !String.IsNullOrEmpty(x.Filename));
     }
 
     private void ParseMime(TextReader reader, string boundary) {
@@ -217,6 +222,7 @@ namespace MailDeluxe {
       txt.WriteLine();
 
       //todo: attachments
+      throw new Exception("todo: attachments");
       txt.Write(Body);
     }
   }

@@ -556,7 +556,7 @@ namespace MailDeluxe {
     public int GetMessageCount(string mailbox) {
       IdlePause();
 
-      string command = GetTag() + "STATUS " + Utilities.QuoteString(mailbox ?? _SelectedMailbox) + " (MESSAGES)";
+      string command = GetTag() + "STATUS " + HelperExtensions.QuoteString(mailbox ?? _SelectedMailbox) + " (MESSAGES)";
       string response = SendCommandGetResponse(command);
       string reg = @"\* STATUS.*MESSAGES (\d+)";
       int result = 0;

@@ -1,5 +1,10 @@
-C:\Development\mailngn2\MailDeluxe\obj\Debug\ResolveAssemblyReference.cache
-C:\Development\mailngn2\MailDeluxe\bin\Debug\MailDeluxe.dll
-C:\Development\mailngn2\MailDeluxe\bin\Debug\MailDeluxe.pdb
-C:\Development\mailngn2\MailDeluxe\obj\Debug\MailDeluxe.dll
-C:\Development\mailngn2\MailDeluxe\obj\Debug\MailDeluxe.pdb
+C:\Development\MailNGN\MailDeluxe\bin\Debug\MailDeluxe.dll
+C:\Development\MailNGN\MailDeluxe\bin\Debug\MailDeluxe.pdb
+C:\Development\MailNGN\MailDeluxe\obj\Debug\ResolveAssemblyReference.cache
+C:\Development\MailNGN\MailDeluxe\obj\Debug\MailDeluxe.dll
+C:\Development\MailNGN\MailDeluxe\obj\Debug\MailDeluxe.pdb
+C:\Development\MailNGN\OpenSource\MailDeluxe\bin\Debug\MailDeluxe.dll
+C:\Development\MailNGN\OpenSource\MailDeluxe\bin\Debug\MailDeluxe.pdb
+C:\Development\MailNGN\OpenSource\MailDeluxe\obj\Debug\ResolveAssemblyReference.cache
+C:\Development\MailNGN\OpenSource\MailDeluxe\obj\Debug\MailDeluxe.dll
+C:\Development\MailNGN\OpenSource\MailDeluxe\obj\Debug\MailDeluxe.pdb

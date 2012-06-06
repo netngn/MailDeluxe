@@ -97,9 +97,9 @@ namespace MailDeluxe {
     public void Disconnect() {
       Logout();
 
-      Utilities.TryDispose(ref _Stream);
-      Utilities.TryDispose(ref _Reader);
-      Utilities.TryDispose(ref _Connection);
+      HelperExtensions.TryDispose(ref _Stream);
+      HelperExtensions.TryDispose(ref _Reader);
+      HelperExtensions.TryDispose(ref _Connection);
     }
 
     public void Dispose() {

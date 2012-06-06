@@ -8,7 +8,7 @@ namespace MailDeluxe
 {
     public class MailAddress
     {
-        private static Regex _emailAddressesRegex = new Regex("\"((?<name>[^\"]*)\"\\s<(?<email>\\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b)>)|((?<name>\\w*\\s\\w*)\\s<(?<email>\\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b)>)|((?<email>\\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b))",
+        private static Regex _emailAddressesRegex = new Regex("\"((?<name>[^\"]*)\"\\s<(?<email>\\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,5}\\b)>)|((?<name>\\w*\\s\\w*)\\s<(?<email>\\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,5}\\b)>)|((?<email>\\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,5}\\b))",
            RegexOptions.IgnoreCase | RegexOptions.Multiline | RegexOptions.Compiled);
 
         public string DisplayName { get; set; }
